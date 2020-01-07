@@ -1,7 +1,7 @@
 /************************************************************************************************/
 /*												*/
-/*		Title: Deriving birth cohort in Hospital Episode Statistics	        	*/
-/*            - basic cleaning of HES extracts							*/
+/*		Project title: Deriving birth cohort in Hospital Episode Statistics	       	*/
+/*            	Do-file title: 1. Basic cleaning for variables recorded in HES extracts		*/
 /* 		Author: Ania Zylbersztejn							*/
 /*		Date created: 10.11.2017 							*/
 /* 		Date modified: 12.11.2019							*/
@@ -12,8 +12,8 @@
 recorded in HES. The code ensures e.g. consistent coding of missing values, 
 removes implausible values etc. 
 
-We run this do file on extract of HES admissions in children under 1 year old
-prior to identifying births and linking episodes into admissions */
+We used this do-file on an extract of HES admissions in children aged under 1 year old
+prior to identifying births and linking episodes into admissions. */
 
 
 
@@ -292,7 +292,7 @@ gen calyr = year(epistart)
 ************ other **************
 
 *drop if ydob<1998
-drop if startage>=5 & startage<7000 /* delete those that are over 5, 0 observations */
+drop if startage<7000 /* we focus on infants  */
 drop if admidate<mdy(04,01,1997) /* episode end date before 1997, 0 observations deleted */
 drop if epistart<mdy(04,01,1997) /* episode end date before 1997, 0 observations deleted */
 
