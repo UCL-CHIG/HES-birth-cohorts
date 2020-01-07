@@ -304,8 +304,8 @@ gen calyr = year(epistart)
 
 *drop if ydob<1998
 drop if startage<7000 /* we focus on infants  */
-drop if admidate<mdy(04,01,1997) /* episode end date before 1997, 0 observations deleted */
-drop if epistart<mdy(04,01,1997) /* episode end date before 1997, 0 observations deleted */
+drop if admidate<mdy(04,01,1997) /* episode end date before 1997 */
+drop if epistart<mdy(04,01,1997) /* episode end date before 1997 */
 
 compress
 save "${filepath}infant_records.dta", replace
