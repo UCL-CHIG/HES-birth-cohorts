@@ -14,10 +14,11 @@ removes implausible values etc. */
 
 ********************************* housekeeping **********************************
 
-* use global macro filepath to define where you save the data created in the process
+* 1. use global macro filepath to define where you save the data created in the process
 global filepath "write filepath here X:\...."
 
-* 1. load the data
+* 2. load the data
+use "XXXXX.dta", clear
 
 
 **************************** cleaning of deaths *******************************
