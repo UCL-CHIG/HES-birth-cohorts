@@ -1,12 +1,12 @@
-/****************************************************************************/
-/*																			*/
-/*		Title: Deriving birth cohort in Hospital Episode Statistics	        */
-/*            - basic cleaning of HES extracts								*/
-/* 		Author: Ania Zylbersztejn											*/
-/*		Date created: 10.11.2017 											*/
-/* 		Date modified: 12.11.2019											*/
-/*																			*/
-/****************************************************************************/
+/************************************************************************************************/
+/*												*/
+/*		Title: Deriving birth cohort in Hospital Episode Statistics	        	*/
+/*            - basic cleaning of HES extracts							*/
+/* 		Author: Ania Zylbersztejn							*/
+/*		Date created: 10.11.2017 							*/
+/* 		Date modified: 12.11.2019							*/
+/*												*/
+/************************************************************************************************/
 
 /* this do-file contains some preliminary cleaning rules for variables 
 recorded in HES. The code ensures e.g. consistent coding of missing values, 
