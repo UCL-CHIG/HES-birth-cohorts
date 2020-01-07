@@ -12,6 +12,14 @@
 recorded in HES-ONS mortality extract. The code ensures e.g. consistent coding of missing values, 
 removes implausible values etc. */
 
+********************************* housekeeping **********************************
+
+* use global macro filepath to define where you save the data created in the process
+global filepath "write filepath here X:\...."
+
+* 1. load the data
+
+
 **************************** cleaning of deaths *******************************
 
 /*Formating dates with DD/MM/YYYY information*/
@@ -62,4 +70,9 @@ label value sex sexl
 replace sex_ons=. if sex_ons!=1 & sex_ons!=2 /* not specified or not known */
 label value sex_ons sexl 
 
+
+************* save deaths that were linked to a HES record *************
+
+drop if encrypted_hesid==""
+save "${filepath}\linked_ONS.dta", replace
 
