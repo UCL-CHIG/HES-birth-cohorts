@@ -17,6 +17,17 @@ prior to identifying births and linking episodes into admissions. */
 
 
 
+
+
+********************************* housekeeping **********************************
+
+* 1. use global macro filepath to define where you save the data created in the process
+global filepath "write filepath here X:\...."
+
+* 2. load the data
+use "XXXXX.dta", clear
+
+
 ****************************** clean variables **********************************
 * since coding of some variables changed from numerical to characters over time
 * we save these variables as string for consistency over years
@@ -289,11 +300,13 @@ gen calyr = year(epistart)
 
 
 
-************ other **************
+************ save the data **************
 
 *drop if ydob<1998
 drop if startage<7000 /* we focus on infants  */
 drop if admidate<mdy(04,01,1997) /* episode end date before 1997, 0 observations deleted */
 drop if epistart<mdy(04,01,1997) /* episode end date before 1997, 0 observations deleted */
 
+compress
+save "${filepath}infant_records.dta", replace
 
