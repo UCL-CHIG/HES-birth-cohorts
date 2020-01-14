@@ -16,3 +16,7 @@ Admitted Patient Care (HES APC), International Journal of Epidemiology, Volume 4
 - Zylbersztejn A, Gilbert R, Hjern A, Hardelid P. Origins of disparities in preventable child mortality in England and Sweden: a birth cohort study. Archives of Disease in Childhood. Published Online First: 26 June 2019. https://doi.org/10.1136/archdischild-2018-316693
 - Moore HC, de Klerk N, Blyth CC, Gilbert R, Fathima P, Zylbersztejn A, Verfürden M, Hardelid P. Temporal trends and socioeconomic differences in acute respiratory infection hospitalisations in children: an intercountry comparison of birth cohort studies in Western Australia, England and Scotland. BMJ Open 2019; 9, e028710. https://doi.org/10.1136/bmjopen-2018-028710
 - Zylbersztejn A, Gilbert R, Hjern A, Wijlaars L, Hardelid P. Child mortality in England compared with Sweden: a birth cohort study. Lancet 2018;391:2008–18. https://doi.org/10.1016/s0140-6736(18)30670-6
+
+## Hospital Episode Statistics
+Useful references:
+- Harron K , Gilbert R, Cromwell D, van der Meulen J. Linking data for mothers and babies in de-identified electronic health data. PLoS One2016;11:e0164667.
