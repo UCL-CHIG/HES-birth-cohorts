@@ -4,7 +4,7 @@
 /*            	Do-file title: 1. Basic cleaning for variables recorded in HES extracts		*/
 /* 		Author: Ania Zylbersztejn							*/
 /*		Date created: 10.11.2017 							*/
-/* 		Date modified: 12.11.2019							*/
+/* 		Date modified: 15.09.2020							*/
 /*												*/
 /************************************************************************************************/
 
@@ -302,10 +302,9 @@ gen calyr = year(epistart)
 
 ************ save the data **************
 
-*drop if ydob<1998
 drop if startage<7000 /* we focus on infants  */
-drop if admidate<mdy(04,01,1997) /* episode end date before 1997 */
-drop if epistart<mdy(04,01,1997) /* episode end date before 1997 */
+drop if admidate<mdy(04,01,1997) /* admission date has to be before 1st April 1997 */
+drop if epistart<mdy(04,01,1997) /* episode start date has to be before 1st April 1997 */
 
 compress
 save "${filepath}infant_records.dta", replace
