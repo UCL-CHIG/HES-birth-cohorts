@@ -1,12 +1,28 @@
-***************************************************************************
-*
-*						derive extra indicators
-*
-***************************************************************************
+/************************************************************************************************/
+/*												*/
+/*		Project title: Deriving birth cohort in Hospital Episode Statistics	       	*/
+/*            	Do-file title: 5. deriving additional variables and finalising the cohort	*/
+/* 		Author: Ania Zylbersztejn							*/
+/*		Date created: 10.11.2017 							*/
+/* 		Date modified: 14.10.2020							*/
+/*												*/
+/************************************************************************************************/
 
-******************************************************************
+/* this do-file covers final steps in derivation of a birth cohort using HES - we derive more 
+complete versions of postcode derived variables and baby's ethnicity, derive length of birth
+admission and remove implausible combinations of birth weight and gestational age using "BW GA centiles.do" do-file"
+Finally, we remove non-English residents from the birth cohort */
+
+********************************* housekeeping **********************************
+
+* 1. use global macro filepath to define where you save the data created in the process
+global filepath2 "write filepath here X:\...."
+
+
+
+**********************************************************************************************
 *			earliest mention of postcode and related vars in infancy
-******************************************************************
+**********************************************************************************************
 
 use "${filepath2}\clean_hesons.dta", clear
 
@@ -35,11 +51,12 @@ keep encrypted_hesid ydob imd04rk_compl resgor_compl postdist_compl postcode_dat
 save "${filepath2}\postcode_info.dta"
 
 
-******************************************************************
+********************************************************************************
 *			Ethnicity (based on most frequently recorded value)
-******************************************************************
+********************************************************************************
 
-log using "${filepath2}\logs\ethnos.log", replace
+use "${filepath2}\clean_hesons.dta", clear
+
 keep encrypted_hesid ethnos
 tab ethnos, mi
 
@@ -71,9 +88,9 @@ save "${filepath2}\ethnos_baby.dta", replace
 
 
 
-************************************************************
+************************************************************************************
 *				length of birth admission
-************************************************************
+************************************************************************************
 
 use "${filepath2}\clean_hesons.dta", clear
 
@@ -100,13 +117,14 @@ save "${filepath2}\length_birth_adm.dta", replace
 
 
 
-***************************************************************************
+***************************************************************************************************
 *
-*						merge
+*				finalise the birth cohort by bringing all data together
 *
-***************************************************************************
+***************************************************************************************************
 
-use "{filepath2}\clean_birthcohort.dta", clear
+
+use "{filepath2}\clean_births.dta", clear
  
 rename birweit birweit_compl
 rename matage matage_compl
@@ -127,14 +145,13 @@ tab tag
 
 duplicates drop encrypted_hesid, force
 
-save  "{filepath2}\clean_birthcohort.dta", replace
+save  "{filepath2}\clean_births.dta", replace
 
 
 ********************************************************************************
-*								sort out deaths
+*				Link death records
 ********************************************************************************
-use "{filepath2}\clean_onsdeaths.dta", clear
-
+use "{filepath2}\clean_linked_ONS.dta", clear
 
 tab source if nhs_indicator_ons!=.
 replace nhs_indicator=nhs_indicator_ons if nhs_indicator==.	
@@ -148,18 +165,20 @@ tab tag
 
 duplicates drop encrypted_hesid, force
 	
-merge 1:1 encrypted_hesid using "{filepath2}\clean_birthcohort.dta"
+merge 1:1 encrypted_hesid using "{filepath2}\clean_births.dta"
 
 drop if _merge==1
 
 drop _merge source tag
 
-save "{filepath2}\clean_birthcohort.dta", replace
+save "{filepath2}\clean_births.dta", replace
 
+
+
+*****************************************************************************
+*				add most complete post code-derived variables
 ********************************************************************************
-*								add postcode
-********************************************************************************
-use "\imd_scores_birth.dta", clear
+use "{filepath2}\postcode_info.dta", clear
 
 duplicates tag encrypted_hesid, gen(tag)	
 tab tag
@@ -169,16 +188,14 @@ tab ydob, mi
 
 tab resgor_compl ydob, mi
 
-merge 1:1 encrypted_hesid using "{filepath2}\clean_birthcohort.dta"
-
-* these are mainly non english residents anyways
+merge 1:1 encrypted_hesid using "{filepath2}\clean_births.dta"
 drop if _merge==1
 
 tab resgor_compl, mi
 
 tab ydob if resgor_compl=="S" | resgor_compl=="W" | resgor_compl=="X" | resgor_compl=="Z"
 
-* need to drop non-English residents from updated data
+* drop non-English residents from the cohort 
 drop  if resgor_compl=="S" | resgor_compl=="W" | resgor_compl=="X" | resgor_compl=="Z"
 
 gen imd04decile=.
@@ -198,17 +215,18 @@ tab imd04decile, mi
 
 drop _merge 
 
-save "{filepath2}\clean_birthcohort.dta", replace
+save "{filepath2}\clean_births.dta", replace
 
 
-********************************************************************************
-*							Tim Cole's centiles
-********************************************************************************
+**************************************************************************************************
+*	Apply Tim Cole's centiles to remove implausible combinations of birth weight and gestational age 
+* 			from  "BW GA centiles.do" do-file"
+**************************************************************************************************
 global implaus "implaus"
 global birweit "birweit_compl"
 global gestat "gestat_compl"
 global sex "sex"
-do "S:\CPRU_HES_9713\CPRU_Data\Extracts\Ania\cleaning BW and GA\Centiles for +-4SD v1.do"
+do "{filepath2}\BW GA centiles.do"
 
 tab implaus, mi
 replace ${gestat}=. if ${implaus}==1
@@ -216,17 +234,18 @@ replace ${birweit}=. if ${implaus}==1
 
 drop implaus
 
-save "{filepath2}\clean_birthcohort.dta", replace
+save "{filepath2}\clean_births.dta", replace
+
 
 ********************************************************************************
-*								add ethnos and length of stay
+*			Add length of birth admission and baby's ethnicity
 ********************************************************************************
-use "\ethnos_baby.dta", clear
+use "{filepath2}\ethnos_baby.dta", clear
 
 duplicates tag encrypted_hesid, gen(tag)	
 tab tag
 
-merge 1:1 encrypted_hesid using "length_birth_adm.dta"
+merge 1:1 encrypted_hesid using "{filepath2}\length_birth_adm.dta"
 
 drop tag _merge
 duplicates tag encrypted_hesid, gen(tag)	
@@ -234,23 +253,11 @@ tab tag
 
 drop tag
 
-merge 1:1 encrypted_hesid using "{filepath2}\clean_birthcohort.dta"
+merge 1:1 encrypted_hesid using "{filepath2}\clean_births.dta"
 
 drop if _merge==1
 drop _merge
-replace birth_adm=0 if birth_adm==. /*only 7 like that */
-
-save "{filepath2}\clean_birthcohort.dta", replace
-
-
-************************* extra weird things *******************************
-tab resgor_compl ydob, mi
-replace resgor_compl="" if resgor_compl=="x"
-
-tab ydob if birth_adm==.
-replace birth_adm=0 if birth_adm==.
-
-tab ydob cong_anom, mi row
+replace birth_adm=0 if birth_adm==. 
 
 drop imd04i_compl imd04ed_compl resstha_ons respct_ons sex_ons communal_establishment nhs_indicator
 label var dod "date of death"
@@ -258,4 +265,4 @@ label var dor "date of registration"
 
 tab sex, mi
 
-save "{filepath2}\clean_birthcohort.dta", replace
+save "{filepath2}\clean_births.dta", replace
