@@ -1,8 +1,8 @@
 /************************************************************************************************/
 /*											 	*/
 /*	Project title: Deriving birth cohort in Hospital Episode Statistics	        	*/
-/*      Do-file title: 3. Cleaning and linking episodes of care into admissions				*/
-/* 	Author: Ania Zylbersztejn & Pia Hardelid							*/
+/*      Do-file title: 2. Cleaning and linking episodes of care into admissions			*/
+/* 	Author: Ania Zylbersztejn & Pia Hardelid						*/
 /*	Date created: 10.11.2017 								*/
 /* 	Date modified: 14.10.2020								*/
 /*												*/
@@ -34,12 +34,12 @@ drop if admidate<mdy(01,01,1998)
 
 ******************************************************************************
 *
-*						additional data cleaning
+*			additional data cleaning
 *
 ******************************************************************************
  
 ******************************************************************************
-*	        			remove duplicated episodes
+*	        	remove duplicated episodes
 ******************************************************************************
 
 duplicates tag encrypted_hesid startage endage mydob sex ///
@@ -65,7 +65,7 @@ drop if epistat!=3
 
 
 ******************************************************************************
-*				remove episodes with no clinical information
+*		remove episodes with no clinical information
 ******************************************************************************
 
 **************************** all diagnoses missing ******************************
@@ -96,7 +96,7 @@ drop tmp* tag
 
 
 *************************************************************************
-*							clean recordings of dates
+				clean recordings of dates
 *************************************************************************
 
 ************ fix admidate
@@ -402,7 +402,7 @@ drop   admcount admcount_old
 
 *****************************************************************************
 *
-*			derive the most commonly recorded value of variables per admission 
+*	derive the most commonly recorded value of variables per admission 
 *
 *****************************************************************************
 
@@ -456,21 +456,7 @@ drop resladst_compl
 rename resladst_str resladst_compl
 
 
-*********** ethnicity *************** 
-tab ethnos, mi
-replace ethnos="" if ethnos=="Z" | ethnos=="99" | ethnos=="9"
-encode ethnos, generate(ethnos_tmp)
-bysort hesid adm_no: egen ethnos_compl=mode(ethnos_tmp)
-label val ethnos_compl ethnos_tmp
-gen ethnos1_check=1 if ethnos_tmp!=.  & ethnos_compl!=ethnos_tmp
-bysort hesid adm_no: egen ethnos1_check_id=min(ethnos1_check)
-br if ethnos1_check_id==1
-drop ethnos1_check* ethnos_tmp
-decode ethnos_compl, gen(ethnos_str)
-drop ethnos_compl
-rename ethnos_str ethnos_compl
-tab ethnos_compl
-
+********** estimated date of birth
 bysort encrypted_hesid: egen bday_compl=min(epistart)
 format bday_compl %d
 
@@ -480,8 +466,6 @@ tab ydob if episode_no2==1 & adm_no==1
 
 drop *_check*
 
-label var ethnos "Baby's ethnicity - original"
-label var ethnos_compl "Baby's ethnicity - mode per admission"
 label var postdist "Baby's postcode - original"
 label var postdist_compl "Baby's postcode - mode per admission"
 label var resladst "Baby's loc.authority - original"
