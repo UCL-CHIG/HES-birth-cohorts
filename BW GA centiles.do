@@ -172,6 +172,3 @@ replace ${implaus}=1 if ${sex}==. & ${gestat}==44 & ${birweit}>=5370 & ${birweit
 replace ${implaus}=1 if ${sex}==. & ${gestat}==45 & ${birweit}>=5370 & ${birweit}!=.
 
 tab ydob ${implaus}, mi
-
-
-*log close
