@@ -6,9 +6,12 @@
 *
 ******************************************************************************
 
-* this do-file identifies implausible combinations of birthweight and gestational age
-* using Tim Cole's growth centiles
-
+/* this do-file replaces implausible combinations of birth weight (birweit variable in HES) 
+and gestational age (gestat variable in HES) as missing. These values are indicated if the recorded birth weight 
+fell outside +/-4 standard deviations (SD) of mean birth weight for each gestational age. To obtain birth weight centiles, 
+we used LMSgrowth, a Microsoft Excel add-in with growth references for children in the UK, 
+developed by Pan and Cole (available from: https://www.healthforallchildren.com/shop-base/shop/software/lmsgrowth/) 
+*/
 
 
 gen ${implaus}=0
