@@ -1,10 +1,10 @@
 /************************************************************************************************/
 /*											 	*/
 /*	Project title: Deriving birth cohort in Hospital Episode Statistics	        	*/
-/*      Do-file title: 3. Deriving a birth cohort in HES data				*/
+/*      Do-file title: 4. Deriving a birth cohort in HES data				*/
 /* 	Author: Ania Zylbersztejn								*/
 /*	Date created: 10.11.2017 								*/
-/* 	Date modified: 12.11.2019								*/
+/* 	Date modified: 14.10.2020								*/
 /*												*/
 /************************************************************************************************/
 
@@ -15,6 +15,8 @@ Prior to running this do-file, we applied preliminary cleaning to the extract
 of HES (using "1 - cleaning of HES extract.do") and to the extract of HES-ONS death data 
 using (using "2 - cleaning of HES-ONS deaths file.do") */
 
+
+********************************* housekeeping **********************************
 
 * 1. use global macro filepath to define where you save the data created in the process
 global filepath "write filepath here X:\...."
