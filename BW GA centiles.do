@@ -1,10 +1,12 @@
-*******************************************************************************
-*
-*						Tim Cole's centiles
-*						Ania Zylbersztejn
-*							02.02.17
-*
-******************************************************************************
+ /************************************************************************************************/
+/*												*/
+/*		Project title: Deriving birth cohort in Hospital Episode Statistics	       	*/
+/*            	Do-file title: Birth weight and gestational age centiles		*/
+/* 		Author: Ania Zylbersztejn							*/
+/*		Date created: 10.11.2017 							*/
+/* 		Date modified: 15.09.2020							*/
+/*												*/
+/************************************************************************************************/
 
 /* this do-file replaces implausible combinations of birth weight (birweit variable in HES) 
 and gestational age (gestat variable in HES) as missing. These values are indicated if the recorded birth weight 
