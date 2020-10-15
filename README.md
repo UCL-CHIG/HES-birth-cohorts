@@ -1,6 +1,10 @@
 # Developing a national birth cohort using Hospital Episode Statistics
 ## Project and repository description
-We developed a national birth cohort covering all singleton live births using Hospital Episode Statistics data. This repository covers methods for developing birth cohorts in Hospital Episode Statistics. Do-file 1) provide basic data cleaning for variables of interest in HES. Do file 2) provides additional data cleaning and code for linking them into admissions using algorithm developed by Dr Pia Hardelid. Do-file 3) provides basic data cleaning for variables of interest in ONS mortality records and our proposed approach to define implausible links between between HES and ONS. Do-files 4) and 5) provide methods for derivation of a birth cohort for singleton live births in Hospital Episode Statistics.
+We developed a national birth cohort covering all singleton live births using Hospital Episode Statistics data. This repository covers methods for developing birth cohorts in Hospital Episode Statistics:
+- Do-file 1) provide basic data cleaning for variables of interest in HES. 
+- Do file 2) provides additional data cleaning and code for linking them into admissions using algorithm developed by Dr Pia Hardelid. 
+- Do-file 3) provides basic data cleaning for variables of interest in ONS mortality records and our proposed approach to define implausible links between between HES and ONS. 
+- Do-files 4) and 5) provide methods for derivation of a birth cohort for singleton live births in Hospital Episode Statistics.
 
 In brief, we used  all HES episodes with an age at admission <7 days and applied broad selection criteria based on diagnostic and procedure codes, healthcare resource group codes and administrative variables recorded in HES (such as admission method or level of provided neonatal care) to identify birth episodes. 
 We then excluded multiple births, stillbirths, episodes marked as terminations of pregnancy, unfinshed episodes, likely false matches etc. 
