@@ -1,7 +1,7 @@
 /************************************************************************************************/
 /*											 	*/
 /*	Project title: Deriving birth cohort in Hospital Episode Statistics	        	*/
-/*      Do-file title: 3. basic cleaning of HES-ONS mortality extract				*/
+/*      Do-file title: 2. HES-ONS death file - basic cleaning for recorded variables.do		*/
 /* 	Author: Ania Zylbersztejn								*/
 /*	Date created: 10.11.2017 								*/
 /* 	Date modified: 14.10.2020								*/
