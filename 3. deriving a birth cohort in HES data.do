@@ -465,26 +465,6 @@ drop if  mydob_tmp3==1
 capture drop  mydob_tmp* diff
 
 
-
-**************************************************************************************************
-*	Apply centiles (based on work of Professor Tim Cole) to remove implausible combinations of birth weight and gestational age 
-* 			from  "BW GA centiles.do" do-file"
-**************************************************************************************************
-
-global implaus "implaus"
-global birweit "birweit_compl"
-global gestat "gestat_compl"
-global sex "sex"
-do "{filepath}\BW GA centiles.do"
-
-tab implaus, mi
-replace ${gestat}=. if ${implaus}==1
-replace ${birweit}=. if ${implaus}==1
-
-drop implaus
-
-
-
 ********************************************************************
 *			remove near exact duplicates
 ********************************************************************
@@ -522,6 +502,24 @@ keep if episode_no2==1
 keep encrypted_hesid ydob bday birweit_compl gestat_compl matage_compl sex misclasssb hesyr
 
 tab ydob, mi
+
+**************************************************************************************************
+*	Apply centiles (based on work of Professor Tim Cole) to remove implausible combinations of birth weight and gestational age 
+* 			from  "BW GA centiles.do" do-file"
+**************************************************************************************************
+
+global implaus "implaus"
+global birweit "birweit_compl"
+global gestat "gestat_compl"
+global sex "sex"
+do "{filepath}\BW GA centiles.do"
+
+tab implaus, mi
+replace ${gestat}=. if ${implaus}==1
+replace ${birweit}=. if ${implaus}==1
+
+drop implaus
+
 
 *** save the cohort
 compress
