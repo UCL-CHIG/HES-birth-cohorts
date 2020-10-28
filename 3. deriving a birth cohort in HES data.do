@@ -1,7 +1,7 @@
 /************************************************************************************************/
 /*											 	*/
 /*	Project title: Deriving birth cohort in Hospital Episode Statistics	        	*/
-/*      Do-file title: 4. Deriving a birth cohort in HES data				*/
+/*      Do-file title: 3. Deriving a birth cohort in HES data					*/
 /* 	Author: Ania Zylbersztejn								*/
 /*	Date created: 10.11.2017 								*/
 /* 	Date modified: 14.10.2020								*/
@@ -12,8 +12,8 @@
 and excluding stillbirths, multiple births  
 
 Prior to running this do-file, we applied preliminary cleaning to the extract 
-of HES (using "1 - cleaning of HES extract.do") and to the extract of HES-ONS death data 
-using (using "2 - cleaning of HES-ONS deaths file.do") */
+of HES (using "1. HES - basic cleaning for recorded variables.do") and to the extract of HES-ONS death data 
+using (using 2. HES-ONS death file - basic cleaning for recorded variables.do") */
 
 
 ********************************* housekeeping **********************************
