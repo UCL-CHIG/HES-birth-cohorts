@@ -9,7 +9,7 @@
 /************************************************************************************************/
 
 /* this do-file contains criteria for identifying birth episodes
-and excluding stillbirths, multiple births and non-English residents 
+and excluding stillbirths, multiple births  
 
 Prior to running this do-file, we applied preliminary cleaning to the extract 
 of HES (using "1 - cleaning of HES extract.do") and to the extract of HES-ONS death data 
