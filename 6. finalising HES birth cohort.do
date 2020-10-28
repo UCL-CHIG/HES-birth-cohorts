@@ -1,7 +1,7 @@
 /************************************************************************************************/
 /*												*/
 /*		Project title: Deriving birth cohort in Hospital Episode Statistics	       	*/
-/*            	Do-file title: 5. deriving additional variables and finalising the cohort	*/
+/*            	Do-file title: 6. finalising HES birth cohort.do				*/
 /* 		Author: Ania Zylbersztejn							*/
 /*		Date created: 10.11.2017 							*/
 /* 		Date modified: 14.10.2020							*/
@@ -12,6 +12,7 @@
 complete versions of postcode derived variables and baby's ethnicity, derive length of birth
 admission and remove implausible combinations of birth weight and gestational age using "BW GA centiles.do" do-file"
 Finally, we remove non-English residents from the birth cohort */
+
 
 ********************************* housekeeping **********************************
 
@@ -219,7 +220,7 @@ save "{filepath2}\clean_births.dta", replace
 
 
 **************************************************************************************************
-*	Apply Tim Cole's centiles to remove implausible combinations of birth weight and gestational age 
+*	Apply centiles (based on work of Professor Tim Cole) to remove implausible combinations of birth weight and gestational age 
 * 			from  "BW GA centiles.do" do-file"
 **************************************************************************************************
 global implaus "implaus"
@@ -238,7 +239,7 @@ save "{filepath2}\clean_births.dta", replace
 
 
 ********************************************************************************
-*			Add length of birth admission and baby's ethnicity
+*			Add length of birth admission and baby's ethnicity to the cohort
 ********************************************************************************
 use "{filepath2}\ethnos_baby.dta", clear
 
