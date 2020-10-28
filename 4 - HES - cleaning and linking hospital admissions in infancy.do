@@ -1,7 +1,7 @@
 /************************************************************************************************/
 /*											 	*/
 /*	Project title: Deriving birth cohort in Hospital Episode Statistics	        	*/
-/*      Do-file title: 2. Cleaning and linking episodes of care into admissions			*/
+/*      Do-file title: 4 - HES - cleaning and linking hospital admissions in infancy.do		*/
 /* 	Author: Ania Zylbersztejn & Pia Hardelid						*/
 /*	Date created: 10.11.2017 								*/
 /* 	Date modified: 14.10.2020								*/
@@ -455,15 +455,6 @@ decode resladst_compl, gen(resladst_str)
 drop resladst_compl
 rename resladst_str resladst_compl
 
-
-********** estimated date of birth
-bysort encrypted_hesid: egen bday_compl=min(epistart)
-format bday_compl %d
-
-tab ydob
-tab ydob if episode_no2==1
-tab ydob if episode_no2==1 & adm_no==1
-
 drop *_check*
 
 label var postdist "Baby's postcode - original"
@@ -474,7 +465,6 @@ label var resgor "Baby's region of residency - original"
 label var resgor_compl "Baby's region of residency - mode per admission"
 label var imd04rk "Baby's IMD score - original"
 label var imd04rk_compl "Baby's IMD score - mode per admission"
-label var bday_compl "Bday - earliest epistart"
 
 drop admincat admisorc admistat anagest anasdate antedur bed_years1 bed_years2 bedyear detndate elecdate elecdur gortreat gppracha gppracro gpprpct gpprstha hatreat hesid maxepino maxepino2 nadm nadm_inf resgor_tmp resha respct_his respct02 respct06 resro resstha02 resstha06 resstha_his rotreat rururb_ind sushrg sushrgvers tag
 
