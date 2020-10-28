@@ -466,6 +466,25 @@ capture drop  mydob_tmp* diff
 
 
 
+**************************************************************************************************
+*	Apply centiles (based on work of Professor Tim Cole) to remove implausible combinations of birth weight and gestational age 
+* 			from  "BW GA centiles.do" do-file"
+**************************************************************************************************
+
+global implaus "implaus"
+global birweit "birweit_compl"
+global gestat "gestat_compl"
+global sex "sex"
+do "{filepath}\BW GA centiles.do"
+
+tab implaus, mi
+replace ${gestat}=. if ${implaus}==1
+replace ${birweit}=. if ${implaus}==1
+
+drop implaus
+
+
+
 ********************************************************************
 *			remove near exact duplicates
 ********************************************************************
