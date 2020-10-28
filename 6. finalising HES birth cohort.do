@@ -127,10 +127,6 @@ save "${filepath2}\length_birth_adm.dta", replace
 
 use "{filepath2}\clean_births.dta", clear
  
-rename birweit birweit_compl
-rename matage matage_compl
-rename gestat gestat_compl
- 
 keep encrypted_hesid sex hesyr ydob misclasssb gestat_compl birweit_compl matage_compl bday
  
 format bday %td
@@ -215,25 +211,6 @@ tab imd04decile, mi
 
 
 drop _merge 
-
-save "{filepath2}\clean_births.dta", replace
-
-
-**************************************************************************************************
-*	Apply centiles (based on work of Professor Tim Cole) to remove implausible combinations of birth weight and gestational age 
-* 			from  "BW GA centiles.do" do-file"
-**************************************************************************************************
-global implaus "implaus"
-global birweit "birweit_compl"
-global gestat "gestat_compl"
-global sex "sex"
-do "{filepath2}\BW GA centiles.do"
-
-tab implaus, mi
-replace ${gestat}=. if ${implaus}==1
-replace ${birweit}=. if ${implaus}==1
-
-drop implaus
 
 save "{filepath2}\clean_births.dta", replace
 
