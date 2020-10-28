@@ -1,7 +1,7 @@
 /************************************************************************************************/
 /*												*/
 /*		Project title: Deriving birth cohort in Hospital Episode Statistics	       	*/
-/*            	Do-file title: 1. Basic cleaning for variables recorded in HES extracts		*/
+/*            	Do-file title: 1. HES: basic cleaning for recorded variables.			*/
 /* 		Author: Ania Zylbersztejn							*/
 /*		Date created: 10.11.2017 							*/
 /* 		Date modified: 15.09.2020							*/
