@@ -503,9 +503,13 @@ keep encrypted_hesid ydob bday birweit_compl gestat_compl matage_compl sex miscl
 
 tab ydob, mi
 
+
 **************************************************************************************************
-*	Apply centiles (based on work of Professor Tim Cole) to remove implausible combinations of birth weight and gestational age 
+*
+*	Apply centiles (based on work of Professor Tim Cole) to remove implausible 
+*                combinations of birth weight and gestational age 
 * 			from  "BW GA centiles.do" do-file"
+*
 **************************************************************************************************
 
 global implaus "implaus"
