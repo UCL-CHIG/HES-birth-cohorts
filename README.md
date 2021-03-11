@@ -13,6 +13,7 @@ This repository covers methods for developing birth cohorts in Hospital Episode 
 - Do-file 5) covers further data cleaning for follow-up ONS mortality records and our proposed approach to define implausible links between between HES and ONS.
 - Do-file 6) covers final steps in derivation of a birth cohort using HES (including finalising variables of interest, excluding non-English residents)
 - BW GA centiles do-file replaces implausible combinations of birth weight and gestational age as missing. 
+
 See the appendix of Zylbersztejn et al. (2020) for more detailed description of steps described in each do-file.
 
 ## Data sources
@@ -25,12 +26,11 @@ Admitted Patient Care (HES APC), International Journal of Epidemiology, Volume 4
 This code was developed using Stata.
 
 ## Other useful references for work on developing birth cohorts using HES
-- Zylbersztejn A, Gilbert R, Hjern A, Wijlaars L, Hardelid P. Child mortality in England compared with Sweden: a birth cohort study. Lancet 2018;391:2008–18. https://doi.org/10.1016/s0140-6736(18)30670-6
 - Harron K , Gilbert R, Cromwell D, van der Meulen J. Linking data for mothers and babies in de-identified electronic health data. PLoS One2016;11:e0164667.
-- Royal College of Obstetricians and Gynaecologists. Patterns of Maternity Care in English NHS Hospitals 2011/12. London: RCOG Press; 2013. https://www.rcog.org.uk/globalassets/documents/guidelines/research--audit/patterns-of-maternity-care-in-english-nhs-hospitals-2011-12_0.pdf
 
 
 ## Selected UCL-CHIG studies which used HES-ONS birth cohort:
+- Zylbersztejn A, Gilbert R, Hjern A, Wijlaars L, Hardelid P. Child mortality in England compared with Sweden: a birth cohort study. Lancet 2018;391:2008–18. https://doi.org/10.1016/s0140-6736(18)30670-6
 - Verfürden M & Fitzpatrick T (joint first authors), Holder L, Zylbersztejn A, Rosella L, Gilbert R, Guttmann A, Hardelid P. Deprivation and pediatric respiratory tract infection mortality: a cohort study in three high-income jurisdictions. CMAJ Open (in press)
 - Zylbersztejn A & Verfürden M (joint first authors), Hardelid P, Gilbert R, Wijlaars L. Phenotyping congenital anomalies in administrative hospital records. Paediatr Perinat Epidemiol. 2019;00:1–10. https://doi.org/10.1111/ppe.12627 (in press)
 - Zylbersztejn A, Gilbert R, Hjern A, Hardelid P. Origins of disparities in preventable child mortality in England and Sweden: a birth cohort study. Archives of Disease in Childhood. Published Online First: 26 June 2019. https://doi.org/10.1136/archdischild-2018-316693
